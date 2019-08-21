@@ -1,11 +1,13 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {TextField, Button}  from '@material-ui/core';
 import AddLabel from "./AddLabel";
+
 const AddTask = (props) => {
 
     const [taskTitle, setTaskTitle] = useState("");
     const [isTaskEmpty, setIsTaskEmpty] = useState(true);
     const ref = useRef(null);
+    const [labelArray, setLabelArray] = useState([]);
 
     const handleChange = (e) => {
         setTaskTitle(e.target.value);
@@ -24,7 +26,11 @@ const AddTask = (props) => {
         }
     }
     const handleClick = (e) => {
-        props.createTask(props.columnId, taskTitle);
+        const task = {
+            title: taskTitle,
+            labels: labelArray
+        }
+        props.createTask(props.columnId, task);
         setTaskTitle("");
         setIsTaskEmpty(true);
     }
@@ -39,11 +45,16 @@ const AddTask = (props) => {
         };
     })
 
-    function handleClickOutside(event) {
+    const handleClickOutside = (event) => {
         if (ref.current && !ref.current.contains(event.target) && isTaskEmpty) {
             props.handleCloseAddTask();
         }
     }
+
+    const handleLabelArrayChange = (labelArray) => {
+        setLabelArray(labelArray)
+    }
+
 
     return (
             props.addTask.isOpen && props.columnId == props.addTask.columnId ?
@@ -59,7 +70,7 @@ const AddTask = (props) => {
                         onChange={handleChange}
                         onKeyUp={handleKeyUp}
                     />
-                    <AddLabel/>
+                    <AddLabel onChange={handleLabelArrayChange}/>
                     <div>
                         <Button variant="contained" color="primary" disabled={isTaskEmpty} onClick={handleClick}>创建</Button>
                     </div>

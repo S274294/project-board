@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleAddTaskClick: (columnId) => dispatch(Action.openAddTask(columnId)),
-        createTask: (columnId, taskTitle) => dispatch(Action.createTask(columnId, taskTitle)),
+        createTask: (columnId, task) => dispatch(Action.createTask(columnId, task)),
         handleCloseAddTask: () => dispatch(Action.closeAddTask())
     }
 }
