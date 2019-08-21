@@ -15,61 +15,77 @@ function Task (props) {
 
     const dispatch = useDispatch();
 
-    function handleTaskDialogClick(ev, taskData)
+    const handleTaskDialogClick = (ev, taskData) =>
     {
         ev.preventDefault();
         dispatch(Action.openTaskDialog(taskData));
     }
 
+    const handleToggleTask = (e, taskId) => {
+        e.stopPropagation()
+        dispatch(Action.toggleTask(taskId));
+    }
     return (
         <Draggable draggableId={props.task.id} index={props.index}>
             {
                 (provided) => (
                     <div className="task" ref={provided.innerRef} {...provided.draggableProps}
-                         {...provided.dragHandleProps} onClick={(ev) => handleTaskDialogClick(ev, props.task)} >
-                        {props.task.info.cover &&
-                            <img style={{width: 274, height: 205}} src={props.task.info.cover}/>
-                        }
-                        {props.task.info.labels &&
-                        <div className="flexContainer">
-                            {props.task.info.labels.map(label =>
-                                <Tooltip title={label.name} key={label.id}>
-                                    <span  style={{...tagStyle, backgroundColor: label.color, display: "block"}}></span>
-                                </Tooltip>
-                            )}
-                        </div>
-                        }
+                         {...provided.dragHandleProps} onClick={(ev) => handleTaskDialogClick(ev, props.task)}>
+                        <div style={props.task.finish ? {opacity: 0.5} : {opacity: 1}}>
+                            <div className="flexContainer">
+                                <div className="checkbox" onClick={(e) => handleToggleTask(e, props.task.id)}>
+                                    {
+                                        props.task.finish && <i className="iconfont icon-cc-yes-crude"/>
+                                    }
+                                </div>
+                                <p style={{margin: "0 0 10px 0"}}>
+                                    {
+                                        props.task.title
+                                    }
+                                </p>
+                            </div>
 
-                        <p style={{margin: "0 0 10px 0"}}>
-                            {
-                                props.task.info.title
+                            {props.task.cover &&
+                            <img style={{width: 274, height: 205}} src={props.task.cover}/>
                             }
-                        </p>
-                        <div className="flexContainer" style={{marginBottom: 16}}>
-                            {
-                                props.task.info.dueTime &&
-                                <div style={{backgroundColor: "#F44336", color: "white", padding: 5, borderRadius: 5, marginRight: 8}}>{moment(props.task.info.dueTime).format("YYYY-MM-DD")}</div>
+                            {props.task.labels &&
+                            <div className="flexContainer">
+                                {props.task.labels.map(label =>
+                                    <Tooltip title={label.name} key={label.id}>
+                                        <span className="tag">
+                                            <span style={{borderRadius: "50%", width: 10, height: 10, backgroundColor: label.color, marginRight: 3}}></span>
+                                            {label.name}
+                                        </span>
+                                    </Tooltip>
+                                )}
+                            </div>
                             }
-                            {
-                                props.task.info.checkList &&
-                                <div  style={{backgroundColor: "#616161", color: "white", padding: 5, borderRadius: 5}}>
-                                    {props.task.info.checkList.progress + "/" + props.task.info.checkList.total.length}</div>
-                            }
-                        </div>
-                        <div className="flexContainer" style={{marginBottom: 8}}>
-                            {
-                                props.task.info.members &&
-                                props.task.info.members.map(member => <Avatar key={member.username} src={member.avatar} style={{marginRight: 8}}/>)
-                            }
-                        </div>
-                        <Divider />
-                        <div className="flexContainer" style={{justifyContent: "space-between", padding: "8px 0"}}>
-                            <span>
-                               <i className="iconfont icon-eye"></i>
-                            </span>
-                            <div>
-                                <span> <i className="iconfont icon-attachment" style={{marginRight: 5}}/>2</span>
-                                <span> <i className="iconfont icon-chat" style={{marginRight: 5}}/>3</span>
+                            <div className="flexContainer" style={{marginBottom: 16}}>
+                                {
+                                    props.task.dueTime &&
+                                    <div style={{backgroundColor: "#F44336", color: "white", padding: 5, borderRadius: 5, marginRight: 8}}>{moment(props.task.dueTime).format("YYYY-MM-DD")}</div>
+                                }
+                                {
+                                    props.task.checkList &&
+                                    <div  style={{backgroundColor: "#616161", color: "white", padding: 5, borderRadius: 5}}>
+                                        {props.task.checkList.progress + "/" + props.task.checkList.total.length}</div>
+                                }
+                            </div>
+                            <div className="flexContainer" style={{marginBottom: 8}}>
+                                {
+                                    props.task.members &&
+                                    props.task.members.map(member => <Avatar key={member.username} src={member.avatar} style={{marginRight: 8}}/>)
+                                }
+                            </div>
+                            <Divider />
+                            <div className="flexContainer" style={{justifyContent: "space-between", padding: "8px 0"}}>
+                                <span>
+                                   <i className="iconfont icon-eye"></i>
+                                </span>
+                                <div>
+                                    <span> <i className="iconfont icon-attachment" style={{marginRight: 5}}/>2</span>
+                                    <span> <i className="iconfont icon-chat" style={{marginRight: 5}}/>3</span>
+                                </div>
                             </div>
                         </div>
                     </div>

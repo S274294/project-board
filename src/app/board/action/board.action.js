@@ -1,10 +1,12 @@
 import boardData from "../../../fakedata/board-data"
 import store from "../../../index";
+import moment from "moment";
 
 export const REQUEST_BOARD = "BOARD_REQUEST_BOARD";
 export const CHANGE_TASK_ORDER = "BOARD_CHANGE_TASK_ORDER";
 export const CREATE_TASK = "OPERATION_CREATE_TASK";
 export const CREATE_COLUMN = "OPERATION_CREATE_COLUMN";
+export const TOGGLE_TASK = "OPERATION_TOGGLE_DATA";
 
 /**
  * 获取board数据
@@ -129,14 +131,17 @@ export const onDragEnd = result => {
  * @param taskTitle 任务标题
  * @returns
  */
-export const createTask = (columnId, taskTitle) => {
+export const createTask = (columnId, task) => {
     const data = store.getState().boardData;
     const taskId = new Date().getTime();
-    const task = {
+    const createTime = new Date().getTime();
+    const updateTime = new Date().getTime();
+    const taskData = {
         id: taskId,
-        info: {
-            title: taskTitle
-        }
+        ...task,
+        createTime,
+        updateTime,
+        finish: false
     }
 
     // 2.在原有列上添加该任务
@@ -147,7 +152,7 @@ export const createTask = (columnId, taskTitle) => {
     // 2.1在原有的tasks数组上添加该任务
     const tasks = {
         ...data.tasks,
-        [taskId]: task
+        [taskId]: taskData
     }
 
 
@@ -190,7 +195,7 @@ export const createColumn = (content) => {
     const newColumnOrder = Array.from(data.columnOrder);
     newColumnOrder.push(columnId);
     // 2.创建新的数据对象
-    const newDate = {
+    const newData = {
         ...data,
         columns: {
             ...data.columns,
@@ -201,6 +206,29 @@ export const createColumn = (content) => {
     // 3.更新数据
     return {
         type: CREATE_COLUMN,
-        data: newDate
+        data: newData
+    }
+}
+
+
+export const toggleTask = (taskId) => {
+    const data = store.getState().boardData;
+    const task = {
+        id: taskId,
+        ...data.tasks[taskId],
+        finish: !data.tasks[taskId].finish
+    }
+
+    const newData = {
+        ...data,
+        tasks:{
+            ...data.tasks,
+            [taskId]: task
+        }
+    }
+
+    return {
+        type: TOGGLE_TASK,
+        data: newData
     }
 }

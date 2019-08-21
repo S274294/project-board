@@ -11,15 +11,17 @@ export const taskOrder = (order) => {
     }
 }
 export const reorderBoardData = (boardData, order) => {
-    if(order === "DEFAULT"){
-        return boardData;
-    }
     const columnOrder = boardData.columnOrder;
     const newColumns = boardData.columns;
     columnOrder.map(columnId => {
         const column = boardData.columns[columnId];
         const taskIds =Array.from(column.taskIds);
         taskIdsFilter(taskIds, order, boardData);
+        taskIds.sort((a, b) => {
+            const taskA = boardData.tasks[a];
+            const taskB = boardData.tasks[b];
+            return taskA.finish - taskB.finish
+        })
 
         newColumns[columnId] = {
             ...column,
@@ -36,11 +38,13 @@ export const reorderBoardData = (boardData, order) => {
 
 const taskIdsFilter = (taskIds, order, boardData) => {
     switch (order) {
+        case "DEFAULT":
+            return;
         case "START_FIRST":
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskA.info.startTime - taskB.info.startTime
+                    return taskA.startTime - taskB.startTime
                 }
             )
             break;
@@ -48,7 +52,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskB.info.startTime - taskA.info.startTime
+                    return taskB.startTime - taskA.startTime
                 }
             )
             break;
@@ -56,7 +60,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskA.info.priority - taskB.info.priority
+                    return taskA.priority - taskB.priority
                 }
             )
             break;
@@ -64,7 +68,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskA.info.dueTime - taskB.info.dueTime
+                    return taskA.dueTime - taskB.dueTime
                 }
             )
             break;
@@ -72,7 +76,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskA.info.createTime - taskB.info.createTime
+                    return taskA.createTime - taskB.createTime
                 }
             )
             break;
@@ -80,7 +84,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskB.info.createTime - taskA.info.createTime
+                    return taskB.createTime - taskA.createTime
                 }
             )
             break;
@@ -88,7 +92,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskA.info.updateTime - taskB.info.updateTime
+                    return taskA.updateTime - taskB.updateTime
                 }
             )
             break;
@@ -96,7 +100,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
             taskIds.sort((a, b)=> {
                     const taskA = boardData.tasks[a];
                     const taskB = boardData.tasks[b];
-                    return taskB.info.updateTime - taskA.info.updateTime
+                    return taskB.updateTime - taskA.updateTime
                 }
             )
             break;

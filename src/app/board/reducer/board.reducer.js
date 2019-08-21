@@ -16,6 +16,8 @@ const boardReducer = (state = initState, action) => {
             return action.data;
         case  Action.CREATE_COLUMN:
             return action.data;
+        case Action.TOGGLE_TASK:
+            return action.data;
         default: return state;
     }
 }
