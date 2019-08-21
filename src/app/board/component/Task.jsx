@@ -2,20 +2,31 @@ import React from 'react';
 import {Draggable} from "react-beautiful-dnd";
 import {Avatar,Tooltip, Divider}  from '@material-ui/core';
 import moment from "moment";
+import {useDispatch} from 'react-redux';
+import * as Action from "../action/index.action";
 import {Face} from "@material-ui/icons"
 
 /** 标签样式 **/
 const tagStyle = {margin: "16px 8px 16px 0", width: 32, height: 6, borderRadius: 3}
 const shadow = {boxShadow: "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)"}
 
-const Task = (props) => {
+
+function Task (props) {
+
+    const dispatch = useDispatch();
+
+    function handleTaskDialogClick(ev, taskData)
+    {
+        ev.preventDefault();
+        dispatch(Action.openTaskDialog(taskData));
+    }
 
     return (
         <Draggable draggableId={props.task.id} index={props.index}>
             {
                 (provided) => (
                     <div className="task" ref={provided.innerRef} {...provided.draggableProps}
-                         {...provided.dragHandleProps} >
+                         {...provided.dragHandleProps} onClick={(ev) => handleTaskDialogClick(ev, props.task)} >
                         {props.task.info.cover &&
                             <img style={{width: 274, height: 205}} src={props.task.info.cover}/>
                         }
