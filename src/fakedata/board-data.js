@@ -7,9 +7,9 @@ const boardData = {
             finish: true,
             cover: "https://demonthemes.com/wp-content/uploads/2019/05/creative-tim-dashboard.jpg",
             labels: [
-                {id: "label1", name: "哈哈", color: "red"},
-                {id: "label2", name: "嘻嘻", color: "yellow"},
-                {id: "label3", name: "么么", color: "green"}
+                { id: "label1", name: "哈哈", color: "red" },
+                { id: "label2", name: "嘻嘻", color: "yellow" },
+                { id: "label3", name: "么么", color: "green" }
             ],
             members: [
                 {id: "harry", username: "xqb", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
@@ -27,9 +27,9 @@ const boardData = {
             checkList: {
                 progress: 5,
                 total:
-                    [{id: "checklist1", content: "实现一个日历库", finish: false},
-                        {id: "checklist2", content: "替换事件颜色用material design", finish: false},
-                        {id: "checklist3", content: "使用moment.js", finish: false}
+                    [{ id: "checklist1", content: "实现一个日历库", finish: false },
+                    { id: "checklist2", content: "替换事件颜色用material design", finish: false },
+                    { id: "checklist3", content: "使用moment.js", finish: false }
                     ]
             },
             priority: 1,
@@ -48,9 +48,9 @@ const boardData = {
             finish: false,
             cover: "https://demonthemes.com/wp-content/uploads/2019/05/creative-tim-dashboard.jpg",
             labels: [
-                {id: "label1", name: "哈哈", color: "red"},
-                {id: "label2", name: "嘻嘻", color: "yellow"},
-                {id: "label3", name: "么么", color: "green"}
+                { id: "label1", name: "哈哈", color: "red" },
+                { id: "label2", name: "嘻嘻", color: "yellow" },
+                { id: "label3", name: "么么", color: "green" }
             ],
             members: [
                 {id: "harry",username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
@@ -66,9 +66,9 @@ const boardData = {
             checkList: {
                 progress: 5,
                 total: [
-                    {id: "checklist1", content: "实现一个日历库", finish: false},
-                    {id: "checklist2", content: "替换事件颜色用material design", finish: false},
-                    {id: "checklist3", content: "使用moment.js", finish: false}
+                    { id: "checklist1", content: "实现一个日历库", finish: false },
+                    { id: "checklist2", content: "替换事件颜色用material design", finish: false },
+                    { id: "checklist3", content: "使用moment.js", finish: false }
                 ]
             },
             priority: 2,
@@ -86,14 +86,14 @@ const boardData = {
             description: "用心的去给手机充电",
             finish: false,
             labels: [
-                {id: "label1", name: "哈哈", color: "red"},
-                {id: "label2", name: "嘻嘻", color: "yellow"},
-                {id: "label3", name: "么么", color: "green"}
+                { id: "label1", name: "哈哈", color: "red" },
+                { id: "label2", name: "嘻嘻", color: "yellow" },
+                { id: "label3", name: "么么", color: "green" }
             ],
             cover: "https://demonthemes.com/wp-content/uploads/2019/05/creative-tim-dashboard.jpg",
             members: [
-                {username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
-                {username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg"}
+                { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
             ],
             attachments: [
                 {
@@ -104,9 +104,9 @@ const boardData = {
             ],
             checkList: {
                 progress: 5, total: [
-                    {id: "checklist1", content: "实现一个日历库", finish: false},
-                    {id: "checklist2", content: "替换事件颜色用material design", finish: false},
-                    {id: "checklist3", content: "使用moment.js", finish: false}
+                    { id: "checklist1", content: "实现一个日历库", finish: false },
+                    { id: "checklist2", content: "替换事件颜色用material design", finish: false },
+                    { id: "checklist3", content: "使用moment.js", finish: false }
                 ]
             },
             priority: 3,
