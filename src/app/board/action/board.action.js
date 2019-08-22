@@ -1,6 +1,5 @@
 import boardData from "../../../fakedata/board-data"
 import store from "../../../index";
-import moment from "moment";
 
 export const REQUEST_BOARD = "BOARD_REQUEST_BOARD";
 export const CHANGE_TASK_ORDER = "BOARD_CHANGE_TASK_ORDER";

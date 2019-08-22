@@ -1,16 +1,20 @@
-import {Button, MenuItem, Menu}  from '@material-ui/core';
 import React, {useState} from "react";
+import Button from "@material-ui/core/Button/Button";
+import Menu from "@material-ui/core/Menu/Menu";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
-const DropDown = (props) => {
 
-    const [anchorEl, setAnchorEl] = useState(null);
+const CustomDropDown = (props) => {
+
+
+    const [anchorEl, setAnchorel] = useState(null);
 
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+        setAnchorel(event.currentTarget);
     }
 
     const handleClose = () => {
-        setAnchorEl(null);
+        setAnchorel(null)
     }
 
     const handleChoose = (order) => {
@@ -25,6 +29,7 @@ const DropDown = (props) => {
                 {props.overlay[props.selected]} <i className="iconfont icon-arrowdown" style={{marginLeft: 5}}/>
             </Button>
             <Menu
+                id="simple-menu"
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
@@ -32,13 +37,12 @@ const DropDown = (props) => {
             >
                 {
                     Object.keys(props.overlay).map((key, index) => {
-                        return <MenuItem onClick={() => handleChoose(key) } key={key}>{props.overlay[key]} {props.selected == key && <i className="iconfont icon-yes" style={{marginLeft: 10}}/>}</MenuItem>
+                        return <MenuItem onClick={() => handleChoose(key) } key={key}>{props.overlay[key]} {props.selected === key && <i className="iconfont icon-cc-yes-crude" style={{marginLeft: 10}}/>}</MenuItem>
                     })
                 }
-
             </Menu>
         </div>
     )
 }
 
-export default DropDown;
+export default CustomDropDown;

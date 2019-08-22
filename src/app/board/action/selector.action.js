@@ -1,6 +1,3 @@
-import store from "../../../index";
-import * as Action from "./board.action";
-
 
 export const SELECTOR_TASK_ORDER = "SELECTOR_TASK_ORDER";
 
@@ -23,7 +20,7 @@ export const reorderBoardData = (boardData, order) => {
             return taskA.finish - taskB.finish
         })
 
-        newColumns[columnId] = {
+        return newColumns[columnId] = {
             ...column,
             taskIds: taskIds
         }
@@ -104,6 +101,7 @@ const taskIdsFilter = (taskIds, order, boardData) => {
                 }
             )
             break;
+        default: return;
     }
 }
 
