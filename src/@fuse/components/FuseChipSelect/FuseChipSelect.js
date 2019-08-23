@@ -4,12 +4,12 @@ import {emphasize} from '@material-ui/core/styles/colorManipulator';
 import Creatable from 'react-select/creatable';
 import Select from 'react-select';
 import clsx from 'clsx';
-import {makeStyles} from '@material-ui/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     root            : {
         '& .fuse-chip-select__input': {
-            color: theme.palette.text.primary
+            color: '#D0605E'
         },
         '&.standard'                : {
             '& $placeholder'   : {},
@@ -58,12 +58,12 @@ const useStyles = makeStyles(theme => ({
     },
     chipFocused     : {
         backgroundColor: emphasize(
-            theme.palette.type === 'light' ? theme.palette.grey[300] : theme.palette.grey[700],
+            '#E0E0E0',
             0.08
         )
     },
     noOptionsMessage: {
-        padding: `${theme.spacing()}px ${theme.spacing(2)}px`
+        padding: theme.spacing(1),
     },
     singleValue     : {
         fontSize: 16

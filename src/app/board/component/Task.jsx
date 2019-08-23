@@ -67,7 +67,7 @@ function Task (props) {
                                 {
                                     props.task.checkList &&
                                     <div  style={{backgroundColor: "#616161", color: "white", padding: 5, borderRadius: 5}}>
-                                        {props.task.checkList.progress + "/" + props.task.checkList.total.length}</div>
+                                        {3 + "/" + props.task.checkList.length}</div>
                                 }
                             </div>
                             <div className="flexContainer" style={{marginBottom: 8}}>

@@ -4,7 +4,7 @@ const boardData = {
             id: "task-1",
             title: "逛商场",
             description: "用心的去逛商场",
-            finish: true,
+            finish: false,
             cover: "https://demonthemes.com/wp-content/uploads/2019/05/creative-tim-dashboard.jpg",
             labels: [
                 { id: "label1", name: "哈哈", color: "red" },
@@ -24,14 +24,11 @@ const boardData = {
                     cover: false
                 }
             ],
-            checkList: {
-                progress: 5,
-                total:
-                    [{ id: "checklist1", content: "实现一个日历库", finish: false },
-                    { id: "checklist2", content: "替换事件颜色用material design", finish: false },
-                    { id: "checklist3", content: "使用moment.js", finish: false }
-                    ]
-            },
+            checkList: [
+                { id: "checklist1", name: "实现一个日历库", checked: false },
+                { id: "checklist2", name: "替换事件颜色用material design", checked: false },
+                { id: "checklist3", name: "使用moment.js", checked: false }
+            ],
             priority: 1,
             startTime: 1565930800739,
             dueTime: 1565930800731,
@@ -48,9 +45,7 @@ const boardData = {
             finish: false,
             cover: "https://demonthemes.com/wp-content/uploads/2019/05/creative-tim-dashboard.jpg",
             labels: [
-                { id: "label1", name: "哈哈", color: "red" },
-                { id: "label2", name: "嘻嘻", color: "yellow" },
-                { id: "label3", name: "么么", color: "green" }
+                { id: "label1", name: "哈哈", color: "red" }
             ],
             members: [
                 {id: "harry",username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
@@ -63,14 +58,11 @@ const boardData = {
                     addDate: "12345676"
                 }
             ],
-            checkList: {
-                progress: 5,
-                total: [
-                    { id: "checklist1", content: "实现一个日历库", finish: false },
-                    { id: "checklist2", content: "替换事件颜色用material design", finish: false },
-                    { id: "checklist3", content: "使用moment.js", finish: false }
-                ]
-            },
+            checkList: [
+                { id: "checklist1", name: "实现一个日历库", checked: false },
+                { id: "checklist2", name: "替换事件颜色用material design", checked: false },
+                { id: "checklist3", name: "使用moment.js", checked: false }
+            ],
             priority: 2,
             startTime: 1565930800737,
             dueTime: 1565930800732,
@@ -102,13 +94,11 @@ const boardData = {
                     addDate: "12345676"
                 }
             ],
-            checkList: {
-                progress: 5, total: [
-                    { id: "checklist1", content: "实现一个日历库", finish: false },
-                    { id: "checklist2", content: "替换事件颜色用material design", finish: false },
-                    { id: "checklist3", content: "使用moment.js", finish: false }
-                ]
-            },
+            checkList: [
+                { id: "checklist1", name: "实现一个日历库", checked: false },
+                { id: "checklist2", name: "替换事件颜色用material design", checked: false },
+                { id: "checklist3", name: "使用moment.js", checked: false }
+            ],
             priority: 3,
             startTime: 1565930800736,
             dueTime: 1565930800733,
@@ -138,6 +128,18 @@ const boardData = {
     },
     columnOrder: ["column-1", "column-2", "column-3"],
 
+    globalLabels: [
+        { id: "label1", name: "哈哈", color: "red" },
+        { id: "label2", name: "嘻嘻", color: "yellow" },
+        { id: "label3", name: "么么", color: "green" }
+    ],
+
+    globalMembers: [
+        { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { username: "jack", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { username: "mary", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+    ]
 }
 
 export default boardData;

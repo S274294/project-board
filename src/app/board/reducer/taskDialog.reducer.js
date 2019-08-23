@@ -20,6 +20,13 @@ const taskDialogReducer = function (state = initialState, action) {
         {
             return initialState;
         }
+        case Action.UPDATE_TASK:
+        {
+            return {
+                ...state,
+                data: action.payload
+            }
+        }
         default:
             return state;
     }
