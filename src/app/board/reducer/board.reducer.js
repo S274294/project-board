@@ -1,4 +1,5 @@
 import * as Action from "../action/index.action"
+import {CHANGE_TASK_PRIORITY} from "../action/index.action";
 
 const initState = {
     tasks: {},
@@ -36,7 +37,6 @@ const boardReducer = (state = initState, action) => {
         case Action.DELETE_COLUMN:
             return action.data
         case Action.ADD_LABEL:
-        {
             return {
                 ...state,
                 globalLabels: [
@@ -44,7 +44,17 @@ const boardReducer = (state = initState, action) => {
                     action.payload
                 ]
             };
-        }
+        case Action.CHANGE_TASK_PRIORITY:
+            return {
+                ...state,
+                tasks: {
+                    ...state.tasks,
+                    [action.taskId]:{
+                        ...state.tasks[action.taskId],
+                        priority: action.priority
+                    }
+                }
+            }
         default: return state;
     }
 }

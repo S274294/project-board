@@ -9,6 +9,7 @@ export const CREATE_TASK = "OPERATION_CREATE_TASK";
 export const CREATE_COLUMN = "OPERATION_CREATE_COLUMN";
 export const TOGGLE_TASK = "OPERATION_TOGGLE_DATA";
 export const ADD_LABEL = 'ADD_LABEL';
+export const CHANGE_TASK_PRIORITY = "CHANGE_TASK_PRIORITY";
 
 /**
  * 获取board数据
@@ -143,7 +144,8 @@ export const createTask = (columnId, task) => {
         ...task,
         createTime,
         updateTime,
-        finish: false
+        finish: false,
+        priority: 1
     }
 
     // 2.在原有列上添加该任务
@@ -242,5 +244,18 @@ export function addLabel(label) {
     return {
         type: ADD_LABEL,
         payload: label
+    }
+}
+
+/**
+ * 修改任务的优先级
+ * @param priority 优先级
+ * @param taskId 任务id
+ */
+export const changeTaskPriority = (priority, taskId) => {
+    return {
+        type: CHANGE_TASK_PRIORITY,
+        priority: priority,
+        taskId: taskId
     }
 }

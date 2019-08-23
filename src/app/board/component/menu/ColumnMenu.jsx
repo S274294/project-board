@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Popover from "@material-ui/core/Popover/Popover";
 import UpdateColumn from "./UpdateColumn";
 import ColumnMenuList from "./ColumnMenuList";
-import ClearTask from "./ClearTask";
+import DeleteColumn from "./DeleteColumn";
 
 
 const ColumnMenu = (props) => {
@@ -70,13 +70,13 @@ const ColumnMenu = (props) => {
                                 case "addColumn":
                                     return <UpdateColumn handleCloseMenu={handleCloseMenu} handleBackMenu={() => switchMenuMode("menuList")} handleClick={(title) => handleAddColumn(title)} tabTitle="添加列表" btnName="创建"/>;
                                 case "clearTask":
-                                    return <ClearTask handleCloseMenu={handleCloseMenu} handleBackMenu={() => switchMenuMode("menuList")} handleClick={handleClearTask} tabTitle="清空任务列表" btnName="清空任务列表">
+                                    return <DeleteColumn handleCloseMenu={handleCloseMenu} handleBackMenu={() => switchMenuMode("menuList")} handleClick={handleClearTask} tabTitle="清空任务列表" btnName="清空任务列表">
                                         您确定要把列表下的所有任务清除吗？
-                                    </ClearTask>;
+                                    </DeleteColumn>;
                                 case "deleteColumn":
-                                    return <ClearTask handleCloseMenu={handleCloseMenu} handleBackMenu={() => switchMenuMode("menuList")} handleClick={handleDeleteColumn} tabTitle="删除列表" btnName="确定" authValue={props.columnTitle}>
+                                    return <DeleteColumn handleCloseMenu={handleCloseMenu} handleBackMenu={() => switchMenuMode("menuList")} handleClick={handleDeleteColumn} tabTitle="删除列表" btnName="确定" authValue={props.columnTitle}>
                                         删除列表将彻底清空此列表上的所有任务，请确认是否要删除整个列表？
-                                    </ClearTask>;
+                                    </DeleteColumn>;
                                 default:
                                     return <ColumnMenuList handleCloseMenu={handleCloseMenu} switchMenuMode={switchMenuMode}/>;
                             }

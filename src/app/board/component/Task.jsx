@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Draggable} from "react-beautiful-dnd";
 import {Avatar,Tooltip, Divider}  from '@material-ui/core';
 import moment from "moment";
 import {useDispatch} from 'react-redux';
 import * as Action from "../action/index.action";
+import PriorityPopover from "./PriorityPopover";
 
 /** 标签样式 **/
 /*const tagStyle = {margin: "16px 8px 16px 0", width: 32, height: 6, borderRadius: 3}
@@ -24,13 +25,21 @@ function Task (props) {
         e.stopPropagation()
         dispatch(Action.toggleTask(taskId));
     }
+
+    const changePriority = (priority) => {
+        dispatch(Action.changeTaskPriority(priority, props.task.id));
+    }
+
     return (
         <Draggable draggableId={props.task.id} index={props.index}>
             {
                 (provided) => (
                     <div className="task" ref={provided.innerRef} {...provided.draggableProps}
-                         {...provided.dragHandleProps} onClick={(ev) => handleTaskDialogClick(ev, props.task)}>
-                        <div style={props.task.finish ? {opacity: 0.5} : {opacity: 1}}>
+                         {...provided.dragHandleProps}>
+                        <PriorityPopover priority={props.task.priority} changePriority={changePriority}>
+                            <div className={"taskLeftPriority" + " " + (props.task.priority !== 1 && "taskHighPriority")} style={{backgroundColor: props.task.priority === 1 ? "#A6A6A6" : props.task.priority === 2 ?  "#FFAF38" : "#FF4F3E"}}/>
+                        </PriorityPopover>
+                        <div style={props.task.finish ? {opacity: 0.5} : {opacity: 1}} onClick={(ev) => handleTaskDialogClick(ev, props.task)}>
                             <div className="flexContainer">
                                 <div className="checkbox" onClick={(e) => handleToggleTask(e, props.task.id)}>
                                     {

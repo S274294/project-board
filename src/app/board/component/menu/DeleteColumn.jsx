@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import Divider from "@material-ui/core/Divider/Divider";
 import MenuTopTab from "./MenuTopTab";
 import Button from "@material-ui/core/Button/Button";
 import TextField from "@material-ui/core/TextField/TextField";
 
-const ClearTask = (props) => {
+const DeleteColumn = (props) => {
 
     const [isError, setIsError] = useState(false);
     const [inputValue, setInputValue] = useState("");
@@ -69,4 +68,4 @@ const ClearTask = (props) => {
     )
 }
 
-export default ClearTask;
+export default DeleteColumn;
