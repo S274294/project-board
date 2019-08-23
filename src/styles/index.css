@@ -137,10 +137,6 @@ body {
   transition: width 218ms;
 }
 
-<<<<<<< HEAD
-
-@import 'tailwind.css';
-=======
 /** userContainer选择执行用户样式 **/
 .userContainer{
     display: flex;
@@ -163,4 +159,4 @@ body {
     width: 20px;
 }
 
->>>>>>> 9918d731b42108262d5b0afa1391409e97038c4f
+@import 'tailwind.css';
