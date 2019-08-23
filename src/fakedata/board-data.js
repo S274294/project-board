@@ -12,10 +12,10 @@ const boardData = {
                 { id: "label3", name: "么么", color: "green" }
             ],
             members: [
-                {id: "harry", username: "xqb", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
-                {id: "iris", username: "zyt", avatar: "https://material-ui.com/static/images/avatar/1.jpg"}
+                { id: "jack", username: "Jack Johnson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                { id: "tom", username: "Tom Smith", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
             ],
-            executor: {id: "harry", username: "xqb", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
+            executor: { id: "harry", username: "xqb", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
             attachments: [
                 {
                     nodeRef: "123456",
@@ -32,9 +32,22 @@ const boardData = {
             priority: 1,
             startTime: 1565930800739,
             dueTime: 1565930800731,
-            activity: {
-                comments: ["好", "很好", "非常好"]
-            },
+            activities: [
+                {
+                    'id': 1,
+                    'type': 'comment',
+                    'member': { username: "Bill Wilson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                    'message': '评论一啊',
+                    'time': 'now'
+                },
+                {
+                    'id': 2,
+                    'type': 'comment',
+                    'member': { username: "Bill Wilson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                    'message': '评论二啊',
+                    'time': 'now'
+                }
+            ],
             createTime: 1565930800731,
             updateTime: 1565930800731
         },
@@ -48,8 +61,8 @@ const boardData = {
                 { id: "label1", name: "哈哈", color: "red" }
             ],
             members: [
-                {id: "harry",username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
-                {id: "iris",username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg"}
+                { id: "jack", username: "Jack Johnson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                { id: "tom", username: "Tom Smith", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
             ],
             attachments: [
                 {
@@ -66,9 +79,7 @@ const boardData = {
             priority: 2,
             startTime: 1565930800737,
             dueTime: 1565930800732,
-            activity: {
-                comments: ["好", "很好", "非常好"]
-            },
+            activities: [],
             createTime: 1565930800732,
             updateTime: 1565930800732
         },
@@ -84,8 +95,8 @@ const boardData = {
             ],
             cover: "https://demonthemes.com/wp-content/uploads/2019/05/creative-tim-dashboard.jpg",
             members: [
-                { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-                { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+                { id: "jack", username: "Jack Johnson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                { id: "tom", username: "Tom Smith", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
             ],
             attachments: [
                 {
@@ -102,9 +113,22 @@ const boardData = {
             priority: 3,
             startTime: 1565930800736,
             dueTime: 1565930800733,
-            activity: {
-                comments: ["好", "很好", "非常好"]
-            },
+            activities: [
+                {
+                    'id': 1,
+                    'type': 'comment',
+                    'member': { username: "Bill Wilson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                    'message': '评论一啊',
+                    'time': 'now'
+                },
+                {
+                    'id': 2,
+                    'type': 'comment',
+                    'member': { username: "Bill Wilson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+                    'message': '评论二啊',
+                    'time': 'now'
+                }
+            ],
             createTime: 1565930800733,
             updateTime: 1565930800733
         },
@@ -135,10 +159,10 @@ const boardData = {
     ],
 
     globalMembers: [
-        { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-        { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-        { username: "jack", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-        { username: "mary", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+        { id: "jack", username: "Jack Johnson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { id: "tom", username: "Tom Smith", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { id: "bill", username: "Bill Wilson", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { id: "nancy", username: "Nancy Miller", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
     ]
 }
 

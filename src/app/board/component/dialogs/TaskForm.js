@@ -8,12 +8,18 @@ import CloseIcon from '@material-ui/icons/Close';
 import TodayIcon from '@material-ui/icons/Today';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import CommentIcon from '@material-ui/icons/Comment';
+import ListIcon from '@material-ui/icons/List';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import * as Action from "../../action/index.action";
+import TaskName from "./TaskName";
 import TaskCheckListItem from './checklist/TaskChecklistItem';
 import TaskAddCheckListItem from './checklist/TaskAddCheckListItem';
-import LabelModel from '../../model/LabelModel'
+import LabelModel from '../../model/LabelModel';
+import TaskActivity from './activity/TaskActivity';
+import TaskAddComment from './comment/TaskAddComment';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -33,9 +39,11 @@ function TaskForm(props) {
     const taskData = useSelector(state => state.taskDialog.data);
     const boardData = useSelector(state => state.boardData);
     const { form: taskForm, handleChange, handleDateChange, setForm, setInForm } = useForm(taskData);
-
     const dueDate = taskForm && taskForm.dueTime ? moment(taskForm.dueTime).format("YYYY-MM-DD") : "";
     const startDate = taskForm && taskForm.startTime ? moment(taskForm.startTime).format("YYYY-MM-DD") : "";
+    
+    
+    
     const updateTask = useDebounce((newTask) => {
         dispatch(Action.updateTask({ ...newTask }));
     }, 0);
@@ -44,6 +52,22 @@ function TaskForm(props) {
         updateTask(taskForm);
     }, [dispatch, taskForm, updateTask]);
 
+    function handleTitleChange(title) {
+        setInForm("title", title);
+    }
+    //更新成员函数
+    function memberChipChange(name, value) {
+        if (value === null) {
+            value = [];
+        }
+        setInForm(name, value.map(member => {
+            return member && {
+                id: member.value,
+                username: member.username,
+                avatar: member.avatar
+            }
+        }));
+    }
     //标签更新函数
     function chipChange(name, value) {
 
@@ -57,9 +81,10 @@ function TaskForm(props) {
                 color: label.color
             }
         }));
+    
     }
 
-    function addNewChip(name, value){
+    function addNewChip(name, value) {
         setInForm(name, [...taskForm.labels, value])
     }
 
@@ -90,6 +115,12 @@ function TaskForm(props) {
     function HandleCheckListRemove() {
         setInForm('checkList', [])
     }
+
+    //添加评论
+    function commentAdd(comment)
+    {
+        return setInForm('activities', [comment, ...taskForm.activities])
+    }
     return (
         <>
             <DialogTitle id="form-dialog-title">
@@ -98,6 +129,37 @@ function TaskForm(props) {
                 </IconButton>
             </DialogTitle>
             <DialogContent>
+                {/* Task Name */}
+                <TaskName title={taskForm.title} onTitleChange={handleTitleChange} />
+                {/* Comment Component */}
+                <div className="mb-24">
+                    <div className="flex items-center mt-16 mb-12">
+                        <CommentIcon className="text-20 mr-8" color="action"/>
+                        <Typography className="text-12">Comment</Typography>
+                    </div>
+                    <div>
+                        <TaskAddComment
+                            onCommentAdd={commentAdd}
+                        />
+                    </div>
+                </div>
+                {taskForm.activities.length > 0 && (
+                    <div className="mb-24">
+                        <div className="flex items-center mt-16">
+                            <ListIcon className="text-20 mr-8" color="action" /> 
+                            <Typography className="text-12">Activity</Typography>
+                        </div>
+                        <List className="">
+                            {taskForm.activities.map(item => (
+                                    <TaskActivity
+                                        item={item}
+                                        key={item.id}
+                                    />
+                                )
+                            )}
+                        </List>
+                    </div>
+                )}
                 {/* CheckList Component */}
                 <div>
                     <div className="mb-24">
@@ -254,6 +316,36 @@ function TaskForm(props) {
 
                             return newLabel.id;
                         }}
+                    />
+                    <FuseChipSelect
+                        value={
+                            taskForm.members.map(member => {
+
+                                return member && {
+                                    value: member.id,
+                                    label: (<Tooltip title={member.username}><Avatar className="-ml-12 w-32 h-32" src={member.avatar} /></Tooltip>),
+                                    username: member.username,
+                                    avatar: member.avatar
+                                }
+                            })
+                        }
+                        onChange={(value) => memberChipChange('members', value)}
+                        placeholder="Select multiple Members"
+                        isMulti
+                        textFieldProps={{
+                            variant: "outlined"
+                        }}
+                        options={boardData.globalMembers.map(member => (
+                            {
+                                value: member.id,
+                                label: (<span className="flex items-center"><Avatar className="w-32 h-32 mr-8" src={member.avatar} />{member.username}</span>),
+                                username: member.username,
+                                avatar: member.avatar
+
+                            }
+                        ))}
+
+                        variant="fixed"
                     />
 
                 </div>
