@@ -1,18 +1,20 @@
 import boardData from "../../../fakedata/board-data"
 import store from "../../../index";
 import moment from "moment";
+import { AssignmentReturned } from "@material-ui/icons";
 
 export const REQUEST_BOARD = "BOARD_REQUEST_BOARD";
 export const CHANGE_TASK_ORDER = "BOARD_CHANGE_TASK_ORDER";
 export const CREATE_TASK = "OPERATION_CREATE_TASK";
 export const CREATE_COLUMN = "OPERATION_CREATE_COLUMN";
 export const TOGGLE_TASK = "OPERATION_TOGGLE_DATA";
+export const ADD_LABEL = 'ADD_LABEL';
 
 /**
  * 获取board数据
  * @returns
  */
-export const requestBoard = () =>{
+export const requestBoard = () => {
     const data = boardData;
     return {
         type: REQUEST_BOARD,
@@ -24,17 +26,17 @@ export const requestBoard = () =>{
  * @param result 拖动结束结果参数
  */
 export const onDragEnd = result => {
-    const {draggableId, source, destination, type} = result;
+    const { draggableId, source, destination, type } = result;
 
     // 1.如果拖动的destination为空(拖到外面了)，则直接返回
-    if(!destination){
+    if (!destination) {
         return {
             type: null
         };
     }
 
     // 2.如果拖动的位置没有发生改变，则直接返回
-    if(source.droppableId === destination.droppableId && source.index === destination.index){
+    if (source.droppableId === destination.droppableId && source.index === destination.index) {
         return {
             type: null
         };
@@ -42,9 +44,9 @@ export const onDragEnd = result => {
 
     const data = store.getState().boardData;
     //3. 如果拖动的类型是任务的话,则处理任务的位置顺序
-    if(type === "task"){
+    if (type === "task") {
         // 3.1如果拖动的task源位置与目标位置在同一个column中
-        if(source.droppableId === destination.droppableId){
+        if (source.droppableId === destination.droppableId) {
             // 3.1.1更新当前列中taskIds的位置
             const column = data.columns[source.droppableId];
             const taskIds = Array.from(column.taskIds);
@@ -107,7 +109,7 @@ export const onDragEnd = result => {
         };
     }
     // 4.如果拖动的类型是column的话，则处理columnOrder中column的顺序
-    if(type === "column"){
+    if (type === "column") {
         // 4.1获取原本的列顺序数组,并重新调整列的顺序
         const columnOrder = Array.from(data.columnOrder);
         columnOrder.splice(source.index, 1);
@@ -145,7 +147,7 @@ export const createTask = (columnId, task) => {
     }
 
     // 2.在原有列上添加该任务
-    const column =  data.columns[columnId];
+    const column = data.columns[columnId];
     const taskIds = Array.from(column.taskIds);
     taskIds.push(taskId);
 
@@ -221,7 +223,7 @@ export const toggleTask = (taskId) => {
 
     const newData = {
         ...data,
-        tasks:{
+        tasks: {
             ...data.tasks,
             [taskId]: task
         }
@@ -230,5 +232,16 @@ export const toggleTask = (taskId) => {
     return {
         type: TOGGLE_TASK,
         data: newData
+    }
+}
+
+
+//添加新标签
+//添加新标签
+export function addLabel(label) {
+    
+    return {
+        type: ADD_LABEL,
+        payload: label
     }
 }

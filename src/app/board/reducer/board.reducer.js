@@ -3,7 +3,7 @@ import * as Action from "../action/index.action"
 const initState = {
     tasks: {},
     columns: {},
-    columnOrder: []
+    columnOrder: [],
 }
 
 const boardReducer = (state = initState, action) => {
@@ -18,6 +18,16 @@ const boardReducer = (state = initState, action) => {
             return action.data;
         case Action.TOGGLE_TASK:
             return action.data;
+        case Action.ADD_LABEL:
+        {
+            return {
+                ...state,
+                globalLabels: [
+                    ...state.globalLabels,
+                    action.payload
+                ]
+            };
+        }
         default: return state;
     }
 }

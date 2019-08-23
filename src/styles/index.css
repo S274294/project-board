@@ -136,3 +136,6 @@ body {
   overflow: hidden;
   transition: width 218ms;
 }
+
+
+@import 'tailwind.css';

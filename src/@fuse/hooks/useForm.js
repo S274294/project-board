@@ -15,11 +15,24 @@ function useForm(initialState, onSubmit)
         );
     }, []);
 
+    const handleDateChange = useCallback((event) => {
+        event.persist();
+        let date = event.target.value;
+        date = date.replace(/-/g,'/');
+
+        setForm(
+            form => ({
+                ...form,
+                [event.target.name]: new Date(date).getTime()
+            })
+        );
+    }, []);
     const resetForm = useCallback(() => {
         setForm(initialState);
     }, [initialState]);
 
     const setInForm = useCallback((name, value) => {
+        
         setForm(form => _.setIn(form, name, value));
     }, []);
 
@@ -37,6 +50,7 @@ function useForm(initialState, onSubmit)
     return {
         form,
         handleChange,
+        handleDateChange,
         handleSubmit,
         resetForm,
         setForm,
