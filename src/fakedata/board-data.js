@@ -136,8 +136,8 @@ const boardData = {
 
     globalMembers: [
         { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-        { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
-        { username: "jack", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+        { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
+        { username: "jack", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
         { username: "mary", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
     ]
 }
