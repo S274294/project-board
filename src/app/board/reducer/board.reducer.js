@@ -18,6 +18,23 @@ const boardReducer = (state = initState, action) => {
             return action.data;
         case Action.TOGGLE_TASK:
             return action.data;
+        case Action.UPDATE_COLUMN_TITLE:
+            return {
+                ...state,
+                columns:{
+                    ...state.columns,
+                    [action.columnId]: {
+                        ...state.columns[action.columnId],
+                        title: action.title
+                    }
+                }
+            }
+        case Action.ADD_COLUMN_AFTER_CURRENT:
+            return action.data;
+        case Action.CLEAR_COLUMN_TASKS:
+            return action.data;
+        case Action.DELETE_COLUMN:
+            return action.data
         default: return state;
     }
 }

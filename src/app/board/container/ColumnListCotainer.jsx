@@ -2,11 +2,13 @@ import { connect } from 'react-redux'
 import ColumnList from "../component/ColumnList";
 import * as Action from "../action/index.action"
 
+
 const mapStateToProps = (state) => {
     return {
         boardData: state.boardData
     }
 }
+
 
 const mapDispatchToProps = (dispatch) => {
     return {
