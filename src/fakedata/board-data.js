@@ -12,9 +12,10 @@ const boardData = {
                 { id: "label3", name: "么么", color: "green" }
             ],
             members: [
-                { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-                { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+                {id: "harry", username: "xqb", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
+                {id: "iris", username: "zyt", avatar: "https://material-ui.com/static/images/avatar/1.jpg"}
             ],
+            executor: {id: "harry", username: "xqb", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
             attachments: [
                 {
                     nodeRef: "123456",
@@ -47,8 +48,8 @@ const boardData = {
                 { id: "label1", name: "哈哈", color: "red" }
             ],
             members: [
-                { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
-                { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+                {id: "harry",username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg"},
+                {id: "iris",username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg"}
             ],
             attachments: [
                 {
@@ -136,6 +137,8 @@ const boardData = {
     globalMembers: [
         { username: "harry", avatar: "https://material-ui.com/static/images/avatar/1.jpg" },
         { username: "iris", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+        { username: "jack", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
+        { username: "mary", avatar: "https://material-ui.com/static/images/avatar/1.jpg" }
     ]
 }
 

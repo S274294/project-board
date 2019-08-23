@@ -1,8 +1,8 @@
 import boardData from "../../../fakedata/board-data"
 import store from "../../../index";
+
 import moment from "moment";
 import { AssignmentReturned } from "@material-ui/icons";
-
 export const REQUEST_BOARD = "BOARD_REQUEST_BOARD";
 export const CHANGE_TASK_ORDER = "BOARD_CHANGE_TASK_ORDER";
 export const CREATE_TASK = "OPERATION_CREATE_TASK";
@@ -237,9 +237,8 @@ export const toggleTask = (taskId) => {
 
 
 //添加新标签
-//添加新标签
 export function addLabel(label) {
-    
+
     return {
         type: ADD_LABEL,
         payload: label

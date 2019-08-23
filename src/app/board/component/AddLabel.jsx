@@ -1,7 +1,9 @@
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 import Input from "@material-ui/core/Input/Input";
 import Menu from "@material-ui/core/Menu/Menu";
 import Button from "@material-ui/core/Button/Button";
+import Popover from "@material-ui/core/Popover/Popover";
+import {Tooltip} from "@material-ui/core";
 
 
 /** 标签颜色数组 **/
@@ -16,20 +18,20 @@ const labelColors = [
 
 const AddLabel = (props) => {
 
-    const [menu, setMenu] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const [selectedColor, setSelectedColor] = useState(0);
     const [labelName, setLabelName] = useState("");
     const [labelArray, setLabelArray] = useState([]);
 
     const handleClick = (event) => {
-        setMenu(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     }
 
     const handleChange = (e) => {
         setLabelName(e.target.value);
     }
     const handleClose = () => {
-        setMenu(null);
+        setAnchorEl(null);
         setLabelName("");
         setSelectedColor(0);
     }
@@ -53,17 +55,19 @@ const AddLabel = (props) => {
 
 
     return (
-        <div className="flexContainer" style={{padding: 8}}>
+        <div className="flexContainer hoverIndicator" style={{padding: 8}}>
             <div style={{flex: 2, display: "flex", justifyContent: "center", alignItems: "center"}}><i className="iconfont icon-label"/></div>
             <div style={{flex: 8, flexWrap: "wrap"}} className="flexContainer">
                 {
                     labelArray.map(label =>
-                        <div className="label" style={{backgroundColor: label.color}} key={label.id}>
-                            <div className="labelContentContainer">{label.name}</div>
-                            <div className="labelCloseIconContainer" id="closeIconContainer" onClick={() =>handleDeleteLabel(label.id)}>
-                                <i className="iconfont icon-baseline-close-px" style={{marginLeft: 4}}></i>
+                        <Tooltip title={label.name} key={label.id}>
+                            <div className="label" style={{backgroundColor: label.color}} key={label.id}>
+                                <div className="labelContentContainer">{label.name}</div>
+                                <div className="labelCloseIconContainer" id="closeIconContainer" onClick={() =>handleDeleteLabel(label.id)}>
+                                    <i className="iconfont icon-baseline-close-px" style={{marginLeft: 4}}></i>
+                                </div>
                             </div>
-                        </div>)
+                        </Tooltip>)
                 }
                 <span style={{cursor: "pointer"}} onClick={handleClick}>
                     {
@@ -71,20 +75,26 @@ const AddLabel = (props) => {
                     }
                 </span>
             </div>
-            <Menu
-                id="simple-menu"
-                anchorEl={menu}
-                keepMounted
-                open={Boolean(menu)}
+            <Popover
+                id="userPicker"
+                open={Boolean(anchorEl)}
+                anchorEl={anchorEl}
                 onClose={handleClose}
-
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
             >
                 <Input
                     id="outlined-name"
                     label="Name"
                     onChange={handleChange}
                     variant="outlined"
-                    style={{margin: 8}}
+                    style={{margin: 8, padding: 10}}
                     value={labelName}
                 />
 
@@ -102,7 +112,7 @@ const AddLabel = (props) => {
                         添加
                     </Button>
                 </div>
-            </Menu>
+            </Popover>
         </div>
     )
 }

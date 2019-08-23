@@ -1,6 +1,7 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {TextField, Button}  from '@material-ui/core';
 import AddLabel from "./AddLabel";
+import AddUser from "./AddUser";
 
 const AddTask = (props) => {
 
@@ -8,10 +9,11 @@ const AddTask = (props) => {
     const [isTaskEmpty, setIsTaskEmpty] = useState(true);
     const ref = useRef(null);
     const [labelArray, setLabelArray] = useState([]);
+    const [executor, setExecutor] = useState(null);
 
     const handleChange = (e) => {
         setTaskTitle(e.target.value);
-        if(e.target.value != null && e.target.value.trim() != ""){
+        if(e.target.value !== null && e.target.value.trim() !== ""){
             setIsTaskEmpty(false);
         }else{
             setIsTaskEmpty(true);
@@ -25,10 +27,12 @@ const AddTask = (props) => {
             setIsTaskEmpty(true);
         }
     }
+
     const handleClick = (e) => {
         const task = {
             title: taskTitle,
-            labels: labelArray
+            labels: labelArray,
+            executor: executor
         }
         props.createTask(props.columnId, task);
         setTaskTitle("");
@@ -55,9 +59,13 @@ const AddTask = (props) => {
         setLabelArray(labelArray)
     }
 
+    const handleExecutorChange = (executor) => {
+        setExecutor(executor);
+    }
+
 
     return (
-            props.addTask.isOpen && props.columnId == props.addTask.columnId ?
+            props.addTask.isOpen && props.columnId === props.addTask.columnId ?
                 <div style={{padding: 16, borderTop: "1px solid #D7D7D7"}} ref={ref}>
                     {/* 输入任务标题 */}
                     <TextField
@@ -70,7 +78,8 @@ const AddTask = (props) => {
                         onChange={handleChange}
                         onKeyUp={handleKeyUp}
                     />
-                    <AddLabel onChange={handleLabelArrayChange}/>
+                    <AddUser onChange={handleExecutorChange}/>
+                    <AddLabel onChange={handleLabelArrayChange} />
                     <div>
                         <Button variant="contained" color="primary" disabled={isTaskEmpty} onClick={handleClick}>创建</Button>
                     </div>

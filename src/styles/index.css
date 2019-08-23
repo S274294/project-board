@@ -54,7 +54,7 @@ body {
     flex-grow: 1;
     min-height: 100px;
     overflow-y: auto;
-    max-height: 800px;
+    max-height: 750px;
   }
   .addColumn{
     margin: 8px;
@@ -137,5 +137,30 @@ body {
   transition: width 218ms;
 }
 
+<<<<<<< HEAD
 
 @import 'tailwind.css';
+=======
+/** userContainer选择执行用户样式 **/
+.userContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px;
+    cursor: pointer;
+}
+#labelDeleteExecutor{
+    color: grey;
+}
+#labelDeleteExecutor:hover{
+    color: red;
+}
+.hoverIndicator:hover{
+    cursor: pointer;
+    color: #3da8f5;
+}
+.hoverIndicator:hover #labelDeleteExecutor{
+    width: 20px;
+}
+
+>>>>>>> 9918d731b42108262d5b0afa1391409e97038c4f

@@ -10,7 +10,7 @@ const AddColumn = (props) => {
 
     const handleChange = (e) => {
         setContent(e.target.value);
-        if(e.target.value != null && e.target.value.trim() != ""){
+        if(e.target.value != null && e.target.value.trim() !== ""){
             setIsContentEmpty(false);
         }else{
             setIsContentEmpty(true);

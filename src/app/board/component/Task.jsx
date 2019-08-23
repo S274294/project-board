@@ -4,11 +4,10 @@ import {Avatar,Tooltip, Divider}  from '@material-ui/core';
 import moment from "moment";
 import {useDispatch} from 'react-redux';
 import * as Action from "../action/index.action";
-import {Face} from "@material-ui/icons"
 
 /** 标签样式 **/
-const tagStyle = {margin: "16px 8px 16px 0", width: 32, height: 6, borderRadius: 3}
-const shadow = {boxShadow: "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)"}
+/*const tagStyle = {margin: "16px 8px 16px 0", width: 32, height: 6, borderRadius: 3}
+const shadow = {boxShadow: "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)"}*/
 
 
 function Task (props) {
@@ -46,15 +45,15 @@ function Task (props) {
                             </div>
 
                             {props.task.cover &&
-                            <img style={{width: 274, height: 205}} src={props.task.cover}/>
+                            <img style={{width: 274, height: 205}} src={props.task.cover} alt="附件"/>
                             }
                             {props.task.labels &&
-                            <div className="flexContainer">
+                            <div className="flexContainer" style={{flexWrap: "wrap"}}>
                                 {props.task.labels.map(label =>
                                     <Tooltip title={label.name} key={label.id}>
                                         <span className="tag">
                                             <span style={{borderRadius: "50%", width: 10, height: 10, backgroundColor: label.color, marginRight: 3}}></span>
-                                            {label.name}
+                                            <span className="labelContentContainer">{label.name}</span>
                                         </span>
                                     </Tooltip>
                                 )}
@@ -73,8 +72,10 @@ function Task (props) {
                             </div>
                             <div className="flexContainer" style={{marginBottom: 8}}>
                                 {
-                                    props.task.members &&
-                                    props.task.members.map(member => <Avatar key={member.username} src={member.avatar} style={{marginRight: 8}}/>)
+                                    props.task.executor &&
+                                    <Tooltip title={props.task.executor.username}>
+                                    <Avatar key={props.task.executor.id} src={props.task.executor.avatar} style={{marginRight: 8}}>{props.task.executor.username.substring(0, 1).toLocaleUpperCase()}</Avatar>
+                                    </Tooltip>
                                 }
                             </div>
                             <Divider />
